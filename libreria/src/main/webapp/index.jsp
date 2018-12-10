@@ -19,6 +19,9 @@
 </header>
 
 <main>
+
+	<a href="#" class="btn btn-primary btn-lg" role="button">Insertar nuevo libro</a>
+
   <table class="table table-hover">
   <thead>
     <tr>
@@ -32,15 +35,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">-</th>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <th>-</th>
-      <th>-</th>
-    </tr>
+  
     <c:forEach items="${LibrosLista.values()}" var="libro">
     <tr>
       <th scope="row">${libro.id}</th>
@@ -48,8 +43,11 @@
       <td>${libro.titulo}</td>
       <td>${libro.editorial}</td>
       <td>${libro.precio}</td>
-      <th scope="col">Editar</th>
-      <th scope="col">Borrar</th>
+      <th scope="col"><a href="formulariolibro?accion=editar&id=${libro.id}">Editar</a></th>
+      <th scope="col">
+      <a href="formulariolibro?accion=borrar&id=${libro.id}" onclick="return confirm('¿Estás seguro de borrar ${libro.titulo}?')">Borrar</a>
+      </th>
+      
     </tr>
     </c:forEach>
   </tbody>
