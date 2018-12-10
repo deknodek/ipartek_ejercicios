@@ -30,12 +30,21 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>ISBN1</td>
-      <td>Titulo 1</td>
-      <td>Editorial 1</td>
-      <td>10</td>
+      <th scope="row">0</th>
+      <td>ISBN0</td>
+      <td>Titulo 0</td>
+      <td>Editorial0</td>
+      <td>0</td>
     </tr>
+    <c:forEach items="${LibrosLista.values()}" var="libro">
+    <tr>
+      <th scope="row">${libro.id}</th>
+      <td>${libro.isbn}</td>
+      <td>${libro.titulo}</td>
+      <td>${libro.editorial}</td>
+      <td>${libro.precio}</td>
+    </tr>
+    </c:forEach>
   </tbody>
 </table>
 </main>
