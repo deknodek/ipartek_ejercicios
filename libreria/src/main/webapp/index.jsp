@@ -15,6 +15,7 @@
 <div class="container">
 <header>
   <h1>CRUD JSP MAVEN</h1>
+   <h2>LIBRERIA</h2>
 </header>
 
 <main>
@@ -26,15 +27,19 @@
       <th scope="col">Título</th>
       <th scope="col">Editorial</th>
       <th scope="col">Precio</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Borrar</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">0</th>
-      <td>ISBN0</td>
-      <td>Titulo 0</td>
-      <td>Editorial0</td>
-      <td>0</td>
+      <th scope="row">-</th>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <th>-</th>
+      <th>-</th>
     </tr>
     <c:forEach items="${LibrosLista.values()}" var="libro">
     <tr>
@@ -43,6 +48,8 @@
       <td>${libro.titulo}</td>
       <td>${libro.editorial}</td>
       <td>${libro.precio}</td>
+      <th scope="col">Editar</th>
+      <th scope="col">Borrar</th>
     </tr>
     </c:forEach>
   </tbody>
