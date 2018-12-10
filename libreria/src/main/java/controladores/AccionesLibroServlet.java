@@ -49,7 +49,7 @@ public class AccionesLibroServlet extends HttpServlet {
 		}
 
 		
-		
+		request.getRequestDispatcher("libro.jsp").forward(request, response);
 		
 	}
 
