@@ -16,7 +16,9 @@ import pojos.Libro;
 @WebServlet("/accioneslibro")
 public class AccionesLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+//reques dispacher mantenite el sistema de envio k recibe si viene por get seguira por get
+	//send redicrec es siempre un get
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
 		String id = request.getParameter("id");
@@ -36,6 +38,7 @@ public class AccionesLibroServlet extends HttpServlet {
 		if(accion != null && "editar".equals(accion)) {
 			Libro libromod = LibrosLista.get(Long.parseLong(id));		
 			request.setAttribute("libro", libromod);
+			request.setAttribute("accion", "EDITAR");
 			request.getRequestDispatcher("libro.jsp").forward(request, response);
 		}
 		
@@ -45,10 +48,12 @@ public class AccionesLibroServlet extends HttpServlet {
 			Libro libro = new Libro(Long.parseLong(id), isbn, titulo, editorial, Integer.parseInt(precio));
 			//Realizar la operación
 			LibrosLista.put(Long.parseLong(id), libro);
-			request.getRequestDispatcher("/").forward(request, response);
+			
+			request.getRequestDispatcher("/").forward(request, response);//peticiones en el servidor
+			//send redicrec el navegador ahce una peticion nueva
 		}
 
-		
+		request.setAttribute("accion", "INSERTAR");
 		request.getRequestDispatcher("libro.jsp").forward(request, response);
 		
 	}

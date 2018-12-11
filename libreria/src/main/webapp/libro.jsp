@@ -16,17 +16,19 @@
 
 <div class="container">
 <header>
-  <h1>CRUD JSP MAVEN</h1>
+  <h1><a href="/libreria">CRUD JSP MAVEN</a></h1>
    <h2>LIBRERIA</h2>
 </header>
 
 <main>
 <form action="accioneslibro" method="post" class="form-group">
   <fieldset>
-    <legend>INSERTER MODIFICAR</legend>
-
-    <input type="hidden" name="id" id="id" value="${libro.id}" />
-
+    <legend> ${accion}</legend>
+    
+	 <p class="row">
+      <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
+    	<input type="text" name="id" id="id" value="${libro.id}" class="form-control col-sm-11" />
+	</p>	
     <p class="row">
       <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
       <input type="text" name="isbn" id="isbn" value="${libro.isbn}"  class="form-control col-sm-11" />
@@ -48,7 +50,7 @@
     </p>
 
     <p>
-      <button class="btn btn-success">Aceptar</button>
+      <button class="btn btn-success">${accion}</button>
     </p>
   </fieldset>
 </form>
