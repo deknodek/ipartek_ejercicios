@@ -53,32 +53,39 @@ public class AccionesLibroServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String accion = request.getParameter("accion");
-		String id = request.getParameter("id");
+		String id =request.getParameter("id");
 		String isbn = request.getParameter("isbn");
 		String titulo = request.getParameter("titulo");
 		String editorial = request.getParameter("editorial");
-		String precio = request.getParameter("precio");
+		Integer precio = Integer.parseInt(request.getParameter("precio"));
+		
+		
 		
 		ServletContext application = request.getServletContext();	
 		@SuppressWarnings("unchecked")
 		TreeMap<Long, Libro> LibrosLista = (TreeMap<Long, Libro>) application.getAttribute("LibrosLista");
 		
 		
-			if(accion == null && isbn!=null) {
-			
-			//Empaquetarla en un objeto
-			Libro libro = new Libro(Long.parseLong(id), isbn, titulo, editorial, Integer.parseInt(precio));
-			//Realizar la operaciÃ³n
-			LibrosLista.put(Long.parseLong(id), libro);
-			
-			request.getRequestDispatcher("/").forward(request, response);//peticiones en el servidor
-			//send redicrec el navegador ahce una peticion nueva
+		Long idLong;
+		if("insertar".equals(accion)) {
+			idLong = LibrosLista.lastKey() + 1L;
+		} else {
+			idLong = Long.parseLong(id);
 		}
-
-		request.setAttribute("accion", "INSERTAR");
-		request.getRequestDispatcher("libro.jsp").forward(request, response);
 		
-		
+		switch(accion) {
+		case "insertar": Libro libro = new Libro(idLong, isbn, titulo, editorial, precio);
+		LibrosLista.put(libro.getId(), libro);
+		break;
+		case "editar": 
+			Libro libro2 = new Libro(idLong, isbn, titulo, editorial, precio);
+			LibrosLista.put(libro2.getId(), libro2);
+			break;
+		case "borrar": LibrosLista.remove(idLong); break;
+		default: throw new ServletException("Opción no definida");
+		}
+		request.setAttribute("accion", accion);
+		response.sendRedirect("principal");
 		
 		
 	}

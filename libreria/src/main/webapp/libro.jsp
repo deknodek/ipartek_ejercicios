@@ -24,11 +24,11 @@
 <form action="accioneslibro" method="post" class="form-group">
   <fieldset>
     <legend> ${accion}</legend>
-    <input type="hidden" name="accion" id="accion" value="${accion}" />
+    
     
 	 <p class="row">
-      <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
-    	<input type="text" name="id" id="id" value="${libro.id}" class="form-control col-sm-11" />
+     <input type="hidden" name="accion" id="accion" value="${accion}" />
+    	<input type="hidden" name="id" id="id" value="${libro.id}" class="form-control col-sm-11" />
 	</p>	
     <p class="row">
       <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
