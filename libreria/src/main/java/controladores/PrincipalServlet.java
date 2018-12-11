@@ -1,7 +1,8 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.HashMap;
+
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,10 +27,10 @@ public class PrincipalServlet extends HttpServlet {
 		ServletContext application = request.getServletContext();
 		
 		@SuppressWarnings("unchecked")
-		HashMap<Long, Libro> LibrosLista = (HashMap<Long, Libro>) application.getAttribute("LibrosLista");
+		TreeMap<Long, Libro> LibrosLista = (TreeMap<Long, Libro>) application.getAttribute("LibrosLista");
 
 		if (LibrosLista == null) {
-			LibrosLista = new HashMap<Long,Libro>();
+			LibrosLista = new TreeMap<Long,Libro>();
 
 			LibrosLista.put(1L, new Libro(1L, "isbn1","titulako","editorial",19));
 			LibrosLista.put(2L, new Libro(2L, "isbn2","titulako2","editorial2",12));

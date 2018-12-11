@@ -20,7 +20,7 @@
 
 <main>
 
-	<a href="accioneslibro" class="btn btn-primary btn-lg" role="button">Insertar nuevo libro</a>
+	<a href="accioneslibro?accion=insertar" class="btn btn-primary btn-lg" role="button">Insertar nuevo libro</a>
 
   <table class="table table-hover">
   <thead>
@@ -45,7 +45,7 @@
       <td>${libro.precio}</td>
       <th scope="col"><a href="accioneslibro?accion=editar&id=${libro.id}">Editar</a></th>
       <th scope="col">
-      <a href="accioneslibro?accion=borrar&id=${libro.id}" onclick="return confirm('¿Estás seguro de borrar ${libro.titulo}?')">Borrar</a>
+      <a href="accioneslibro?accion=borrar&id=${libro.id}">Borrar</a>
       </th>
       
     </tr>

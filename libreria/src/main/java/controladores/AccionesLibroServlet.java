@@ -1,7 +1,7 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,10 +16,42 @@ import pojos.Libro;
 @WebServlet("/accioneslibro")
 public class AccionesLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 //reques dispacher mantenite el sistema de envio k recibe si viene por get seguira por get
 	//send redicrec es siempre un get
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String accion = request.getParameter("accion");
+		String id = request.getParameter("id");
+
+		
+		ServletContext application = request.getServletContext();	
+		@SuppressWarnings("unchecked")
+		TreeMap<Long, Libro> LibrosLista = (TreeMap<Long, Libro>) application.getAttribute("LibrosLista");
+		
+		if(accion==null) {
+			response.sendRedirect("/libreria");
+		}else if("editar".equals(accion) || "borrar".equals(accion)){
+			Libro libromod = LibrosLista.get(Long.parseLong(id));		
+			request.setAttribute("libro", libromod);
+			request.setAttribute("accion", accion);
+			request.getRequestDispatcher("libro.jsp").forward(request, response);
+		}else if("insertar".equals(accion)) {
+			request.setAttribute("accion", accion);
+			request.getRequestDispatcher("libro.jsp").forward(request, response);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String accion = request.getParameter("accion");
 		String id = request.getParameter("id");
 		String isbn = request.getParameter("isbn");
@@ -29,20 +61,10 @@ public class AccionesLibroServlet extends HttpServlet {
 		
 		ServletContext application = request.getServletContext();	
 		@SuppressWarnings("unchecked")
-		HashMap<Long, Libro> LibrosLista = (HashMap<Long, Libro>) application.getAttribute("LibrosLista");
+		TreeMap<Long, Libro> LibrosLista = (TreeMap<Long, Libro>) application.getAttribute("LibrosLista");
 		
-		if(accion != null && "borrar".equals(accion)) {
-			LibrosLista.remove(Long.parseLong(id));
-			request.getRequestDispatcher("/").forward(request, response);
-		}
-		if(accion != null && "editar".equals(accion)) {
-			Libro libromod = LibrosLista.get(Long.parseLong(id));		
-			request.setAttribute("libro", libromod);
-			request.setAttribute("accion", "EDITAR");
-			request.getRequestDispatcher("libro.jsp").forward(request, response);
-		}
 		
-		if(accion == null && isbn!=null) {
+			if(accion == null && isbn!=null) {
 			
 			//Empaquetarla en un objeto
 			Libro libro = new Libro(Long.parseLong(id), isbn, titulo, editorial, Integer.parseInt(precio));
@@ -56,11 +78,9 @@ public class AccionesLibroServlet extends HttpServlet {
 		request.setAttribute("accion", "INSERTAR");
 		request.getRequestDispatcher("libro.jsp").forward(request, response);
 		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
+		
+		
+		
 	}
 
 }

@@ -24,6 +24,7 @@
 <form action="accioneslibro" method="post" class="form-group">
   <fieldset>
     <legend> ${accion}</legend>
+    <input type="hidden" name="accion" id="accion" value="${accion}" />
     
 	 <p class="row">
       <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
