@@ -74,7 +74,7 @@ public class Libro {
 	public void setTitulo(String titulo) {
 		if(titulo==null || titulo.trim().length() == 0) {
 			//throw new PojoException("no se admiten valores de id negativos");
-			setErrortitulo("El editorial no puede estar vacio");
+			setErrortitulo("El titulo no puede estar vacio");
 		}
 		this.titulo = titulo.trim();
 	}
@@ -90,7 +90,7 @@ public class Libro {
 	public void setPrecio(String precio) {
 		
 		//Integer precioInt = Integer.parseInt(precio);
-		//Integer precioInt = PrecioToPrecioInt(precio);
+		Integer precioInt = PrecioToPrecioInt(precio);
 		
 		if(precio==null || precio.trim().length() == 0) {
 			setErrorprecio("el precio tiene k ser superior a 0");
@@ -98,15 +98,15 @@ public class Libro {
 		this.precio = precio;
 	}
 
-//	private Integer PrecioToPrecioInt(String texto) {
-//		try {
-//			return Integer.parseInt(texto);
-//		} catch (Exception e) {
-//			setErrorprecio("La fecha no tiene el formato adecuado");
-//		}
-//		
-//		return null;
-//	}
+	private Integer PrecioToPrecioInt(String texto) {
+		try {
+			return Integer.parseInt(texto);
+		} catch (Exception e) {
+			setErrorprecio("Solo se admiten numeros");
+		}
+		
+		return null;
+	}
 	
 	
 	public boolean isCorrecto() {
