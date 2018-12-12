@@ -38,9 +38,9 @@ public class AccionesLibroServlet extends HttpServlet {
 				Libro libromod = LibrosLista.get(Long.parseLong(id));		
 				request.setAttribute("libro", libromod);
 				request.setAttribute("accion", accion);
-				request.setAttribute("validacion", "required");
+				//request.setAttribute("validacion", "required");
 				request.setAttribute("tipo", "warning");
-				request.getRequestDispatcher("libro.jsp").forward(request, response);
+				request.getRequestDispatcher("libroinclude.jsp").forward(request, response);
 				
 				
 			}else if( "borrar".equals(accion)) {
@@ -49,13 +49,13 @@ public class AccionesLibroServlet extends HttpServlet {
 				request.setAttribute("accion", accion);
 				request.setAttribute("validacion", "disabled");
 				request.setAttribute("tipo", "danger");
-				request.getRequestDispatcher("libro.jsp").forward(request, response);
+				request.getRequestDispatcher("libroinclude.jsp").forward(request, response);
 			
 			}else if("insertar".equals(accion)) {
 				request.setAttribute("accion", accion);
 				request.setAttribute("tipo", "success");
-				request.setAttribute("validacion", "required");
-				request.getRequestDispatcher("libro.jsp").forward(request, response);
+				//request.setAttribute("validacion", "required");
+				request.getRequestDispatcher("libroinclude.jsp").forward(request, response);
 			}
 		}
 		
@@ -98,7 +98,7 @@ public class AccionesLibroServlet extends HttpServlet {
 			LibrosLista.put(libro2.getId(), libro2);
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
-		default: throw new ServletException("Opci�n no definida");
+		default: throw new ServletException("Opción no definida");
 		}
 		request.setAttribute("accion", accion);
 		response.sendRedirect("principal");
