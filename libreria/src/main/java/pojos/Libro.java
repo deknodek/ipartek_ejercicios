@@ -13,12 +13,10 @@ public class Libro {
 	private String erroreditorial;
 	private String errorprecio;
 	
-	private boolean hayErrores=false;
+	private static boolean hayErrores=false;
 	//private Libro() {}
 	
-	public  boolean isCorrecto() {
-		return !hayErrores;// es correcto si no hau errores
-	}
+	
 
 
 
@@ -63,11 +61,12 @@ public class Libro {
 	}
 
 	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+		
 		if(isbn==null || isbn.trim().length() == 0) {
 			//throw new PojoException("no se admiten valores de id negativos");
 			setErrorisbn("El isbn no puede estar vacio");
 		}
+		this.isbn = isbn.trim().toUpperCase();
 	}
 
 	public void setTitulo(String titulo) {
@@ -75,7 +74,7 @@ public class Libro {
 			//throw new PojoException("no se admiten valores de id negativos");
 			setErrortitulo("El editorial no puede estar vacio");
 		}
-		this.titulo = titulo;
+		this.titulo = titulo.trim();
 	}
 
 	public void setEditorial(String editorial) {
@@ -83,7 +82,7 @@ public class Libro {
 			//throw new PojoException("no se admiten valores de id negativos");
 			setErroreditorial("El editorial no puede estar vacio");
 		}
-		this.editorial = editorial;
+		this.editorial = editorial.trim();
 	}
 
 	public void setPrecio(Integer precio) {
@@ -96,7 +95,9 @@ public class Libro {
 	
 	
 	
-	
+	public static boolean isCorrecto() {
+		return !hayErrores;
+	}
 	
 	
 	

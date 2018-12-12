@@ -8,7 +8,7 @@
   <fieldset>
     <legend>${accion}</legend>
     
-    
+    <p>MENSAJE:${precioError}</p>
 	 <p class="row">
      <input type="hidden" name="accion" id="accion" value="${accion}" />
     	<input type="hidden" name="id" id="id" value="${libro.id}" class="form-control col-sm-11" />

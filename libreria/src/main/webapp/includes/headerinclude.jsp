@@ -14,6 +14,6 @@
 
 <div class="container">
 <header>
-  <h1>CRUD JSP MAVEN</h1>
+  <h1>CRUD</h1>
    <h2>LIBRERIA</h2>
 </header>

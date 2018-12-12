@@ -91,12 +91,17 @@ public class AccionesLibroServlet extends HttpServlet {
 			idLong = Long.parseLong(id);
 		}
 		
+		
+		
+			
+			
+		
+		
 		switch(accion) {
 		case "insertar": 
 		case "editar": 
-			Libro libro2 = new Libro(idLong, isbn, titulo, editorial, Integer.parseInt(request.getParameter("precio")));
-			
-			LibrosLista.put(libro2.getId(), libro2);
+			Libro libro = new Libro(idLong, isbn, titulo, editorial,Integer.parseInt(request.getParameter("precio")));
+			LibrosLista.put(libro.getId(), libro);
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
 		default: throw new ServletException("Opción no definida");
