@@ -14,22 +14,26 @@
 	</p>	
     <p class="row">
       <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
-      <input type="text" name="isbn" id="isbn" value="${libro.isbn}"  class="form-control col-sm-11" ${validacion} />
+      <input type="text" name="isbn" id="isbn" value="${libro.isbn}"  class="form-control col-sm-11 " ${validacion} placeholder="${libro.errorisbn}" />
+      
     </p>
 
     <p class="row">
       <label for="titulo" class="col-sm-1 col-form-label">Título</label>
-      <input type="text" name="titulo" id="titulo" value="${libro.titulo}"  class="form-control col-sm-11" ${validacion} />
+      <input type="text" name="titulo" id="titulo" value="${libro.titulo}"  class="form-control col-sm-11" ${validacion} placeholder="${libro.errortitulo}" />
+     
     </p>
 
     <p class="row">
       <label for="editorial" class="col-sm-1 col-form-label">Editorial</label>
-      <input type="text" name="editorial" id="editorial" value="${libro.editorial}"  class="form-control col-sm-11" ${validacion} />
+      <input type="text" name="editorial" id="editorial" value="${libro.editorial}"  class="form-control col-sm-11" ${validacion} placeholder="${libro.erroreditorial}"/>
+      
     </p>
 
     <p class="row">
       <label for="precio" class="col-sm-1 col-form-label">Precio</label>
-       <input type="text" name="precio" id="precio" value="${libro.precio}"  class="form-control col-sm-11" ${validacion} />
+       <input type="text" name="precio" id="precio" value="${libro.precio}"  class="form-control col-sm-11" ${validacion} placeholder="${libro.errorprecio}"/>
+   
     </p>
 
     <p>

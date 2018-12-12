@@ -3,7 +3,8 @@ package pojos;
 public class Libro {
 	private Long id;
 	private String isbn, titulo, editorial;
-	private Integer precio;
+	//private Integer precio;
+	private String precio;
 	
 	
 	
@@ -13,14 +14,15 @@ public class Libro {
 	private String erroreditorial;
 	private String errorprecio;
 	
-	private static boolean hayErrores=false;
+	
+	private boolean hayErrores = false;
 	//private Libro() {}
 	
 	
 
 
 
-	public Libro(Long id, String isbn, String titulo, String editorial, Integer precio) {
+	public Libro(Long id, String isbn, String titulo, String editorial, String precio) {
 		setId(id);
 		setIsbn(isbn);
 		setTitulo(titulo);
@@ -47,7 +49,7 @@ public class Libro {
 		return editorial;
 	}
 
-	public Integer getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
@@ -85,17 +87,29 @@ public class Libro {
 		this.editorial = editorial.trim();
 	}
 
-	public void setPrecio(Integer precio) {
-		if(precio==null || precio>=0) {
+	public void setPrecio(String precio) {
+		
+		//Integer precioInt = Integer.parseInt(precio);
+		//Integer precioInt = PrecioToPrecioInt(precio);
+		
+		if(precio==null || precio.trim().length() == 0) {
 			setErrorprecio("el precio tiene k ser superior a 0");
 		}
 		this.precio = precio;
 	}
 
+//	private Integer PrecioToPrecioInt(String texto) {
+//		try {
+//			return Integer.parseInt(texto);
+//		} catch (Exception e) {
+//			setErrorprecio("La fecha no tiene el formato adecuado");
+//		}
+//		
+//		return null;
+//	}
 	
 	
-	
-	public static boolean isCorrecto() {
+	public boolean isCorrecto() {
 		return !hayErrores;
 	}
 	

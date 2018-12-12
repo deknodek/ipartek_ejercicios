@@ -34,7 +34,7 @@ public class PrincipalServlet extends HttpServlet {
 
 			
 			for(Long i = 1L; i <= 5L; i++) {
-				LibrosLista.put(i, new Libro(i, "ISdsdsdEFED"+i,"Desarollo"+i,"Ipartek"+i,(int) (15+i)));
+				LibrosLista.put(i, new Libro(i, "ISdsdsdEFED"+i,"Desarollo"+i,"Ipartek"+i,"19"));
 			}
 
 			application.setAttribute("LibrosLista", LibrosLista);

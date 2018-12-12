@@ -21,6 +21,8 @@ public class AccionesLibroServlet extends HttpServlet {
 	//send redicrec es siempre un get
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		String accion = request.getParameter("accion");
 		String id = request.getParameter("id");
 
@@ -69,13 +71,13 @@ public class AccionesLibroServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String accion = request.getParameter("accion");
 		String id =request.getParameter("id");
 		String isbn = request.getParameter("isbn");
 		String titulo = request.getParameter("titulo");
 		String editorial = request.getParameter("editorial");
-		
+		String precio = request.getParameter("precio");
 		
 		
 		
@@ -97,13 +99,31 @@ public class AccionesLibroServlet extends HttpServlet {
 		
 		switch(accion) {
 		case "insertar": 
-		case "editar": 
-			Libro libro = new Libro(idLong, isbn, titulo, editorial,Integer.parseInt(request.getParameter("precio")));
+		case "editar": Libro libro = new Libro(idLong, isbn, titulo, editorial,precio);
+		boolean librois=libro.isCorrecto();
+		
+	
+		  if(!librois) {
+			  
+			
+			request.setAttribute("accion", accion);
+			if("insertar".equals(accion)) {
+				request.setAttribute("tipo", "success");
+			}else if("editar".equals(accion)){
+				request.setAttribute("tipo", "warning");
+			}
+			
+			request.setAttribute("libro", libro);
+			request.getRequestDispatcher("libroinclude.jsp").forward(request, response);
+			return;
+		}
+		 
+		
 			LibrosLista.put(libro.getId(), libro);
 		
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
-		default: throw new ServletException("OpciÃ³n no definida");
+		default: throw new ServletException("Opción no definida");
 		}
 		
 		response.sendRedirect("/libreria");
