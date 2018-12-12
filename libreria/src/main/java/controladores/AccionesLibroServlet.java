@@ -38,6 +38,7 @@ public class AccionesLibroServlet extends HttpServlet {
 				Libro libromod = LibrosLista.get(Long.parseLong(id));		
 				request.setAttribute("libro", libromod);
 				request.setAttribute("accion", accion);
+				request.setAttribute("validacion", "required");
 				request.setAttribute("tipo", "warning");
 				request.getRequestDispatcher("libro.jsp").forward(request, response);
 				
@@ -46,13 +47,14 @@ public class AccionesLibroServlet extends HttpServlet {
 				Libro libromod2 = LibrosLista.get(Long.parseLong(id));		
 				request.setAttribute("libro", libromod2);
 				request.setAttribute("accion", accion);
-				request.setAttribute("disabled", "disabled");
+				request.setAttribute("validacion", "disabled");
 				request.setAttribute("tipo", "danger");
 				request.getRequestDispatcher("libro.jsp").forward(request, response);
 			
 			}else if("insertar".equals(accion)) {
 				request.setAttribute("accion", accion);
 				request.setAttribute("tipo", "success");
+				request.setAttribute("validacion", "required");
 				request.getRequestDispatcher("libro.jsp").forward(request, response);
 			}
 		}

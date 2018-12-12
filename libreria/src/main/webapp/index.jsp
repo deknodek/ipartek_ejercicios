@@ -17,7 +17,7 @@
   <h1>CRUD JSP MAVEN</h1>
    <h2>LIBRERIA</h2>
 </header>
-
+<%--COMENTARIO JSP --%>
 <main>
 
 	<a href="accioneslibro?accion=insertar" class="btn btn-primary btn-lg" role="button">Insertar nuevo libro</a>
