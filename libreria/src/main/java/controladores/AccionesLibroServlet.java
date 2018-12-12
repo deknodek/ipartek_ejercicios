@@ -93,8 +93,6 @@ public class AccionesLibroServlet extends HttpServlet {
 		
 		
 		
-			
-			
 		
 		
 		switch(accion) {
@@ -102,13 +100,13 @@ public class AccionesLibroServlet extends HttpServlet {
 		case "editar": 
 			Libro libro = new Libro(idLong, isbn, titulo, editorial,Integer.parseInt(request.getParameter("precio")));
 			LibrosLista.put(libro.getId(), libro);
+		
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
 		default: throw new ServletException("Opción no definida");
 		}
-		request.setAttribute("accion", accion);
-		response.sendRedirect("principal");
 		
+		response.sendRedirect("/libreria");
 		
 	}
 
