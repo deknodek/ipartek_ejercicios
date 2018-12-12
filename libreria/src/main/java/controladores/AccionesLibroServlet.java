@@ -31,14 +31,30 @@ public class AccionesLibroServlet extends HttpServlet {
 		
 		if(accion==null) {
 			response.sendRedirect("/libreria");
-		}else if("editar".equals(accion) || "borrar".equals(accion)){
-			Libro libromod = LibrosLista.get(Long.parseLong(id));		
-			request.setAttribute("libro", libromod);
-			request.setAttribute("accion", accion);
-			request.getRequestDispatcher("libro.jsp").forward(request, response);
-		}else if("insertar".equals(accion)) {
-			request.setAttribute("accion", accion);
-			request.getRequestDispatcher("libro.jsp").forward(request, response);
+			
+		}else {
+			
+			if("editar".equals(accion)){
+				Libro libromod = LibrosLista.get(Long.parseLong(id));		
+				request.setAttribute("libro", libromod);
+				request.setAttribute("accion", accion);
+				request.setAttribute("tipo", "warning");
+				request.getRequestDispatcher("libro.jsp").forward(request, response);
+				
+				
+			}else if( "borrar".equals(accion)) {
+				Libro libromod2 = LibrosLista.get(Long.parseLong(id));		
+				request.setAttribute("libro", libromod2);
+				request.setAttribute("accion", accion);
+				request.setAttribute("disabled", "disabled");
+				request.setAttribute("tipo", "danger");
+				request.getRequestDispatcher("libro.jsp").forward(request, response);
+			
+			}else if("insertar".equals(accion)) {
+				request.setAttribute("accion", accion);
+				request.setAttribute("tipo", "success");
+				request.getRequestDispatcher("libro.jsp").forward(request, response);
+			}
 		}
 		
 		
@@ -57,7 +73,7 @@ public class AccionesLibroServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		String titulo = request.getParameter("titulo");
 		String editorial = request.getParameter("editorial");
-		Integer precio = Integer.parseInt(request.getParameter("precio"));
+		
 		
 		
 		
@@ -74,15 +90,13 @@ public class AccionesLibroServlet extends HttpServlet {
 		}
 		
 		switch(accion) {
-		case "insertar": Libro libro = new Libro(idLong, isbn, titulo, editorial, precio);
-		LibrosLista.put(libro.getId(), libro);
-		break;
+		case "insertar": 
 		case "editar": 
-			Libro libro2 = new Libro(idLong, isbn, titulo, editorial, precio);
+			Libro libro2 = new Libro(idLong, isbn, titulo, editorial, Integer.parseInt(request.getParameter("precio")));
 			LibrosLista.put(libro2.getId(), libro2);
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
-		default: throw new ServletException("Opción no definida");
+		default: throw new ServletException("Opciï¿½n no definida");
 		}
 		request.setAttribute("accion", accion);
 		response.sendRedirect("principal");
