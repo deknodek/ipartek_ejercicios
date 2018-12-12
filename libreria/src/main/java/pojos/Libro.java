@@ -16,6 +16,12 @@ public class Libro {
 	private boolean hayErrores=false;
 	//private Libro() {}
 	
+	public  boolean isCorrecto() {
+		return !hayErrores;// es correcto si no hau errores
+	}
+
+
+
 	public Libro(Long id, String isbn, String titulo, String editorial, Integer precio) {
 		setId(id);
 		setIsbn(isbn);

@@ -95,6 +95,7 @@ public class AccionesLibroServlet extends HttpServlet {
 		case "insertar": 
 		case "editar": 
 			Libro libro2 = new Libro(idLong, isbn, titulo, editorial, Integer.parseInt(request.getParameter("precio")));
+			
 			LibrosLista.put(libro2.getId(), libro2);
 			break;
 		case "borrar": LibrosLista.remove(idLong); break;
