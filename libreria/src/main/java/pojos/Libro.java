@@ -57,7 +57,7 @@ public class Libro {
 		
 		if(id==null || id<=0) {
 			//throw new PojoException("no se admiten valores de id negativos");
-			setErrorID("El id debe valer mas que 0");
+			setErrorID("Valores numericos");
 		}
 		this.id = id;
 	}
@@ -66,7 +66,7 @@ public class Libro {
 		
 		if(isbn==null || isbn.trim().length() == 0) {
 			//throw new PojoException("no se admiten valores de id negativos");
-			setErrorisbn("El isbn no puede estar vacio");
+			setErrorisbn("Obligatorio");
 		}
 		this.isbn = isbn.trim().toUpperCase();
 	}
@@ -74,7 +74,7 @@ public class Libro {
 	public void setTitulo(String titulo) {
 		if(titulo==null || titulo.trim().length() == 0) {
 			//throw new PojoException("no se admiten valores de id negativos");
-			setErrortitulo("El titulo no puede estar vacio");
+			setErrortitulo("Obligatorio");
 		}
 		this.titulo = titulo.trim();
 	}
@@ -82,7 +82,7 @@ public class Libro {
 	public void setEditorial(String editorial) {
 		if(editorial==null || editorial.trim().length() == 0) {
 			//throw new PojoException("no se admiten valores de id negativos");
-			setErroreditorial("El editorial no puede estar vacio");
+			setErroreditorial("Obligatorio");
 		}
 		this.editorial = editorial.trim();
 	}
@@ -93,7 +93,7 @@ public class Libro {
 		Integer precioInt = PrecioToPrecioInt(precio);
 		
 		if(precio==null || precio.trim().length() == 0) {
-			setErrorprecio("el precio tiene k ser superior a 0");
+			setErrorprecio("Obligatorio");
 		}
 		this.precio = precio;
 	}
