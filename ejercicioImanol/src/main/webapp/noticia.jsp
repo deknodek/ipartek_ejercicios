@@ -22,6 +22,9 @@
 
 
 <main>
+<a href="mantenimiento" class="btn btn-primary">Volver a mantenimiento</a>
+<a href="accionesnoticias?accion=insertar" class="btn btn-primary">Insertar Noticia</a>
+
 <form action="accionesnoticias" method="post" class="form-group">
   <fieldset>
 

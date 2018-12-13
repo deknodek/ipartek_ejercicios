@@ -29,7 +29,7 @@ public class AccionesNoticiaServlet extends HttpServlet {
 		TreeMap<Long, Noticia> NoticiasLista = (TreeMap<Long, Noticia>) application.getAttribute("NoticiasLista");
 		
 		if(accion==null) {
-			response.sendRedirect("/mantenimiento");
+			response.sendRedirect("mantenimiento");
 			
 		}else {
 			
@@ -115,7 +115,7 @@ public class AccionesNoticiaServlet extends HttpServlet {
 		default: throw new ServletException("Opci�n no definida");
 		}
 		
-		response.sendRedirect("/Noticias/mantenimiento");
+		response.sendRedirect("mantenimiento");
 		
 	}
 
